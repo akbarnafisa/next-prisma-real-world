@@ -1,0 +1,23 @@
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import jwkToPem from "jwk-to-pem";
+import {
+  // PUBLIC_JWK,
+  TOKEN_ALG,
+  TOKEN_KID,
+  // TOKEN_PREFIX,
+  TOKEN_TTL,
+} from "../constants";
+
+export const encodePassword = (password: string) => {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
+
+export const issueToken = (payload: object) => {
+  const privateKey = JSON.parse(process.env.PRIVATE_JWK as string);
+  return jwt.sign(payload, jwkToPem(privateKey, { private: true }), {
+    algorithm: TOKEN_ALG,
+    expiresIn: TOKEN_TTL,
+    keyid: TOKEN_KID,
+  });
+};
