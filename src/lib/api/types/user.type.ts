@@ -34,9 +34,10 @@ const Profile = objectType({
     t.implements("BaseUser");
     t.nonNull.boolean("following", {
       resolve: () => {
-        return false
-      }
-    })
+        return false;
+      },
+    });
+    // TODO: following
     // t.nonNull.boolean("following", {
     //   resolve: async ({ username }, _, context: Context) => {
     //     if (!context.currentUser) return false;
@@ -54,11 +55,19 @@ const Profile = objectType({
   },
 });
 
+const UserLoginInput = inputObjectType({
+  name: "UserLoginInput",
+  definition(t) {
+    t.nonNull.string("email");
+    t.nonNull.string("password");
+  },
+});
+
 const UserTypes = [
   BaseUser,
   AuthUser,
   Profile,
-  // UserLoginInput,
+  UserLoginInput,
   UserSignupInput,
   // UserUpdateInput,
 ];

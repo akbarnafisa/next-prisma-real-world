@@ -21,3 +21,7 @@ export const issueToken = (payload: object) => {
     keyid: TOKEN_KID,
   });
 };
+
+export const checkPassword = (password: string, hash: string) => {
+  return bcrypt.compareSync(password, hash);
+};

@@ -18,6 +18,7 @@ interface BaseUser {
 }
 
 type Mutation {
+  login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
 }
 
@@ -34,6 +35,11 @@ type Profile implements BaseUser {
 
 type Query {
   profile(username: String!): Profile
+}
+
+input UserLoginInput {
+  email: String!
+  password: String!
 }
 
 input UserSignupInput {
