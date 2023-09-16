@@ -96,6 +96,7 @@ export interface NexusGenFieldTypes {
     username: string; // String!
   }
   Query: { // field return type
+    currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
   }
   BaseUser: { // field return type
@@ -129,6 +130,7 @@ export interface NexusGenFieldTypeNames {
     username: 'String'
   }
   Query: { // field return type name
+    currentUser: 'AuthUser'
     profile: 'Profile'
   }
   BaseUser: { // field return type name

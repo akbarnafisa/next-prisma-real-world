@@ -1,5 +1,5 @@
 import { inputObjectType, interfaceType, objectType } from "nexus";
-
+import { Context } from "../context";
 
 export interface AuthPayload {
   userId: number;
@@ -39,25 +39,19 @@ const Profile = objectType({
   definition(t) {
     t.implements("BaseUser");
     t.nonNull.boolean("following", {
-      resolve: () => {
-        return false;
+      resolve: async ({ username }, _, context: Context) => {
+        if (!context.currentUser) return false;
+        const follows = await context.prisma.user
+          .findUnique({
+            where: { username },
+          })
+          .followedBy({
+            select: { followerId: true },
+            where: { followerId: context.currentUser.id },
+          });
+        return !!follows;
       },
     });
-    // TODO: following
-    // t.nonNull.boolean("following", {
-    //   resolve: async ({ username }, _, context: Context) => {
-    //     if (!context.currentUser) return false;
-    //     const follows = await context.prisma.user
-    //       .findUnique({
-    //         where: { username },
-    //       })
-    //       .followedBy({
-    //         select: { followerId: true },
-    //         where: { followerId: context.currentUser.id },
-    //       });
-    //     return !!follows.length;
-    //   },
-    // });
   },
 });
 
@@ -72,11 +66,11 @@ const UserLoginInput = inputObjectType({
 const UserUpdateInput = inputObjectType({
   name: "UserUpdateInput",
   definition(t) {
-    t.nonNull.string('email');
-    t.nonNull.string('username');
-    t.string('password');
-    t.string('bio');
-    t.string('image');
+    t.nonNull.string("email");
+    t.nonNull.string("username");
+    t.string("password");
+    t.string("bio");
+    t.string("image");
   },
 });
 

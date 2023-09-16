@@ -35,6 +35,7 @@ type Profile implements BaseUser {
 }
 
 type Query {
+  currentUser: AuthUser!
   profile(username: String!): Profile
 }
 
