@@ -7,8 +7,23 @@
 import type { Context } from "./../lib/api/context"
 import type { FieldAuthorizeResolver } from "nexus/dist/plugins/fieldAuthorizePlugin"
 import type { ValidateResolver } from "nexus-validate"
-
-
+import type { core } from "nexus"
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    /**
+     * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "DateTime";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    /**
+     * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+     */
+    date<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
+  }
+}
 
 
 declare global {
@@ -16,6 +31,12 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ArticleInput: { // input type
+    body: string; // String!
+    description: string; // String!
+    tagList: string[]; // [String!]!
+    title: string; // String!
+  }
   UserLoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -43,9 +64,20 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  DateTime: any
 }
 
 export interface NexusGenObjects {
+  Article: { // root type
+    body: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    description: string; // String!
+    favoritesCount: number; // Int!
+    id: number; // Int!
+    slug: string; // String!
+    title: string; // String!
+    updateAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   AuthUser: { // root type
     bio?: string | null; // String
     email: string; // String!
@@ -65,7 +97,7 @@ export interface NexusGenObjects {
 
 export interface NexusGenInterfaces {
   BaseUser: NexusGenRootTypes['AuthUser'] | NexusGenRootTypes['Profile'];
-  Node: NexusGenRootTypes['AuthUser'];
+  Node: NexusGenRootTypes['Article'] | NexusGenRootTypes['AuthUser'];
 }
 
 export interface NexusGenUnions {
@@ -76,6 +108,19 @@ export type NexusGenRootTypes = NexusGenInterfaces & NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Article: { // field return type
+    author: NexusGenRootTypes['Profile']; // Profile!
+    body: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    description: string; // String!
+    favorited: boolean; // Boolean!
+    favoritesCount: number; // Int!
+    id: number; // Int!
+    slug: string; // String!
+    tagList: string[]; // [String!]!
+    title: string; // String!
+    updateAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   AuthUser: { // field return type
     bio: string | null; // String
     email: string; // String!
@@ -85,6 +130,7 @@ export interface NexusGenFieldTypes {
     username: string; // String!
   }
   Mutation: { // field return type
+    createArticle: NexusGenRootTypes['Article']; // Article!
     follow: NexusGenRootTypes['Profile']; // Profile!
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     signup: NexusGenRootTypes['AuthUser'] | null; // AuthUser
@@ -98,6 +144,7 @@ export interface NexusGenFieldTypes {
     username: string; // String!
   }
   Query: { // field return type
+    article: NexusGenRootTypes['Article'] | null; // Article
     checkEmail: string | null; // String
     checkUsername: string | null; // String
     currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
@@ -114,6 +161,19 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  Article: { // field return type name
+    author: 'Profile'
+    body: 'String'
+    createdAt: 'DateTime'
+    description: 'String'
+    favorited: 'Boolean'
+    favoritesCount: 'Int'
+    id: 'Int'
+    slug: 'String'
+    tagList: 'String'
+    title: 'String'
+    updateAt: 'DateTime'
+  }
   AuthUser: { // field return type name
     bio: 'String'
     email: 'String'
@@ -123,6 +183,7 @@ export interface NexusGenFieldTypeNames {
     username: 'String'
   }
   Mutation: { // field return type name
+    createArticle: 'Article'
     follow: 'Profile'
     login: 'AuthUser'
     signup: 'AuthUser'
@@ -136,6 +197,7 @@ export interface NexusGenFieldTypeNames {
     username: 'String'
   }
   Query: { // field return type name
+    article: 'Article'
     checkEmail: 'String'
     checkUsername: 'String'
     currentUser: 'AuthUser'
@@ -153,6 +215,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createArticle: { // args
+      input: NexusGenInputs['ArticleInput']; // ArticleInput!
+    }
     follow: { // args
       username: string; // String!
     }
@@ -170,6 +235,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    article: { // args
+      slug: string; // String!
+    }
     checkEmail: { // args
       email: string; // String!
     }
@@ -184,10 +252,11 @@ export interface NexusGenArgTypes {
 
 export interface NexusGenAbstractTypeMembers {
   BaseUser: "AuthUser" | "Profile"
-  Node: "AuthUser"
+  Node: "Article" | "AuthUser"
 }
 
 export interface NexusGenTypeInterfaces {
+  Article: "Node"
   AuthUser: "BaseUser" | "Node"
   Profile: "BaseUser"
 }

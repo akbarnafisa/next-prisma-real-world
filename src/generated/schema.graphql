@@ -2,6 +2,27 @@
 ### Do not make changes to this file directly
 
 
+type Article implements Node {
+  author: Profile!
+  body: String!
+  createdAt: DateTime!
+  description: String!
+  favorited: Boolean!
+  favoritesCount: Int!
+  id: Int!
+  slug: String!
+  tagList: [String!]!
+  title: String!
+  updateAt: DateTime!
+}
+
+input ArticleInput {
+  body: String!
+  description: String!
+  tagList: [String!]!
+  title: String!
+}
+
 type AuthUser implements BaseUser & Node {
   bio: String
   email: String!
@@ -17,7 +38,13 @@ interface BaseUser {
   username: String!
 }
 
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
 type Mutation {
+  createArticle(input: ArticleInput!): Article!
   follow(username: String!): Profile!
   login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
@@ -37,6 +64,7 @@ type Profile implements BaseUser {
 }
 
 type Query {
+  article(slug: String!): Article
   checkEmail(email: String!): String
   checkUsername(username: String!): String
   currentUser: AuthUser!

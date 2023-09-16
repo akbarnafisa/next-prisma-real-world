@@ -9,6 +9,7 @@ import {
   TOKEN_TTL,
 } from "../constants";
 import { AuthPayload } from "./types/user.type";
+import slug from 'slug';
 
 export const encodePassword = (password: string) => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -43,4 +44,9 @@ export const loadCurrentUser = (authorization: string | undefined) => {
   const payload = verifyToken<AuthPayload>(token);
 
   return payload.userId
+};
+
+
+export const slugify = (title: string): string => {
+  return `${slug(title, { lower: true })}-${((Math.random() * Math.pow(36, 6)) | 0).toString(36)}`;
 };

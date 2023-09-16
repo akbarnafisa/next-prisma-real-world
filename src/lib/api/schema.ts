@@ -6,17 +6,31 @@ import { GraphQLError } from "graphql";
 
 // mutation
 import UserMutation from "./mutation/user.mutation";
+import ArticleMutation from "./mutation/article.mutation";
 import ProfileMutation from "./mutation/profile.mutation";
 
 // query
 import UserQuery from "./query/user.query";
+import ArticleQuery from "./query/article.query";
 
 // types
 import BaseTypes from "./types/base.type";
 import UserTypes from "./types/user.type";
+import ArticleType from "./types/article.type";
+import { DateTime } from './types/scalar.type';
 
 export const schema = makeSchema({
-  types: [ProfileMutation, UserMutation, UserQuery, ...BaseTypes, ...UserTypes],
+  types: [
+    ArticleMutation,
+    ProfileMutation,
+    UserMutation,
+    UserQuery,
+    ArticleQuery,
+    DateTime,
+    ...BaseTypes,
+    ...UserTypes,
+    ...ArticleType,
+  ],
   outputs: {
     schema: path.join(
       __dirname,
