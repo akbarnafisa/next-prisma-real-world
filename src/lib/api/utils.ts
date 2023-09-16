@@ -2,12 +2,13 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import jwkToPem from "jwk-to-pem";
 import {
-  // PUBLIC_JWK,
+  PUBLIC_JWK,
   TOKEN_ALG,
   TOKEN_KID,
-  // TOKEN_PREFIX,
+  TOKEN_PREFIX,
   TOKEN_TTL,
 } from "../constants";
+import { AuthPayload } from "./types/user.type";
 
 export const encodePassword = (password: string) => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -24,4 +25,22 @@ export const issueToken = (payload: object) => {
 
 export const checkPassword = (password: string, hash: string) => {
   return bcrypt.compareSync(password, hash);
+};
+
+const verifyToken = <T> (token: string): T => {
+  const payload = jwt.verify(token, jwkToPem(PUBLIC_JWK), {
+    algorithms: [TOKEN_ALG],
+  });
+  return payload as T
+};
+
+export const loadCurrentUser = (authorization: string | undefined) => {
+  if (!authorization || !authorization.startsWith(TOKEN_PREFIX)) {
+    return;
+  }
+
+  const token = authorization.split(TOKEN_PREFIX)[1];
+  const payload = verifyToken<AuthPayload>(token);
+
+  return payload.userId
 };

@@ -7,6 +7,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from "../../lib/api/prisma";
 import { schema } from "../../lib/api/schema";
+import { loadCurrentUser } from "@/lib/api/utils";
 
 let apiHandler: ReturnType<typeof startServerAndCreateNextHandler>;
 
@@ -57,7 +58,10 @@ async function getApiHandler() {
 
   if (!apiHandler) {
     apiHandler = startServerAndCreateNextHandler(server, {
-      context: async (req, res) => ({ req, res, prisma }),
+      context: async (req, res) => {
+        const id = loadCurrentUser(req.headers.authorization);
+        return { req, res, prisma, currentUser: id ? { id } : undefined };
+      },
     });
   }
   return apiHandler;
@@ -74,4 +78,3 @@ export default async function handler(
   }
   return apiHandler(req, res);
 }
-

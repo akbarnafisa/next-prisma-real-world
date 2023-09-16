@@ -1,5 +1,11 @@
 import { inputObjectType, interfaceType, objectType } from "nexus";
 
+
+export interface AuthPayload {
+  userId: number;
+  username: string;
+}
+
 const BaseUser = interfaceType({
   name: "BaseUser",
   definition(t) {
@@ -63,12 +69,23 @@ const UserLoginInput = inputObjectType({
   },
 });
 
+const UserUpdateInput = inputObjectType({
+  name: "UserUpdateInput",
+  definition(t) {
+    t.nonNull.string('email');
+    t.nonNull.string('username');
+    t.string('password');
+    t.string('bio');
+    t.string('image');
+  },
+});
+
 const UserTypes = [
   BaseUser,
   AuthUser,
   Profile,
   UserLoginInput,
   UserSignupInput,
-  // UserUpdateInput,
+  UserUpdateInput,
 ];
 export default UserTypes;

@@ -3,10 +3,10 @@
 export const TOKEN_TTL = '2d';
 export const TOKEN_ALG = 'RS256';
 export const TOKEN_KID = 'asoigeboy';
-// export const TOKEN_PREFIX = 'Bearer ';
+export const TOKEN_PREFIX = 'Bearer ';
 
 export const PUBLIC_JWK = {
-  kty: 'RSA',
+  kty: 'RSA' as const,
   n: 'obJMeiyQJ_GYCYlb6L0FeZ7lfFG0AoeoGbFSHN-IZ8uXkv34LZooPuGbmbc5QByISN4h4mplE6h9AP-ILPGu9wz35QnFY4Bd3jBOOA-vLTwGI_GETdRxbGmREcX316cUNQu45EmX2CeaS3FpweLX5gClid1y9tqAwGixfVeclVFbz0vqOR1_6Dm-NKtfktpiTg7EaExfjdpXs2agkAbtW1hEnll0Ztcl1ZhX9lcz94OT47rC2JiWlgZcNG-S1dq0xss2UOkFf4MvvGj2aM-hEgvjig_WUNba0fxn9CM25anwGAMWM04v_O8vx0Iy4DXDgzhPWgmNmDGoec9dxDF2Qw',
   e: 'AQAB'
 }

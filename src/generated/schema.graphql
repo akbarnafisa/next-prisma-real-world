@@ -20,6 +20,7 @@ interface BaseUser {
 type Mutation {
   login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
+  updateUser(input: UserUpdateInput!): AuthUser
 }
 
 interface Node {
@@ -45,5 +46,13 @@ input UserLoginInput {
 input UserSignupInput {
   email: String!
   password: String!
+  username: String!
+}
+
+input UserUpdateInput {
+  bio: String
+  email: String!
+  image: String
+  password: String
   username: String!
 }

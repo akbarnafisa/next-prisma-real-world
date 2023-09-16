@@ -25,6 +25,13 @@ export interface NexusGenInputs {
     password: string; // String!
     username: string; // String!
   }
+  UserUpdateInput: { // input type
+    bio?: string | null; // String
+    email: string; // String!
+    image?: string | null; // String
+    password?: string | null; // String
+    username: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -80,6 +87,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     signup: NexusGenRootTypes['AuthUser'] | null; // AuthUser
+    updateUser: NexusGenRootTypes['AuthUser'] | null; // AuthUser
   }
   Profile: { // field return type
     bio: string | null; // String
@@ -112,6 +120,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     login: 'AuthUser'
     signup: 'AuthUser'
+    updateUser: 'AuthUser'
   }
   Profile: { // field return type name
     bio: 'String'
@@ -139,6 +148,9 @@ export interface NexusGenArgTypes {
     }
     signup: { // args
       input: NexusGenInputs['UserSignupInput']; // UserSignupInput!
+    }
+    updateUser: { // args
+      input: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!
     }
   }
   Query: {
