@@ -136,6 +136,7 @@ export interface NexusGenFieldTypes {
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     signup: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     unFollow: NexusGenRootTypes['Profile']; // Profile!
+    updateArticle: NexusGenRootTypes['Article']; // Article!
     updateUser: NexusGenRootTypes['AuthUser'] | null; // AuthUser
   }
   Profile: { // field return type
@@ -190,6 +191,7 @@ export interface NexusGenFieldTypeNames {
     login: 'AuthUser'
     signup: 'AuthUser'
     unFollow: 'Profile'
+    updateArticle: 'Article'
     updateUser: 'AuthUser'
   }
   Profile: { // field return type name
@@ -234,6 +236,10 @@ export interface NexusGenArgTypes {
     }
     unFollow: { // args
       username: string; // String!
+    }
+    updateArticle: { // args
+      input: NexusGenInputs['ArticleInput']; // ArticleInput!
+      slug: string; // String!
     }
     updateUser: { // args
       input: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!

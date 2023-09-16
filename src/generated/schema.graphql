@@ -50,6 +50,7 @@ type Mutation {
   login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
   unFollow(username: String!): Profile!
+  updateArticle(input: ArticleInput!, slug: String!): Article!
   updateUser(input: UserUpdateInput!): AuthUser
 }
 

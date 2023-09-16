@@ -74,6 +74,54 @@ const ArticleMutation = extendType({
         });
       },
     });
+
+    t.nonNull.field("updateArticle", {
+      type: "Article",
+      args: {
+        slug: nonNull(stringArg()),
+        input: nonNull(arg({ type: "ArticleInput" })),
+      },
+      authorize: (_, _args, ctx: Context) => !!ctx.currentUser,
+      validate: ({ string }) => ({
+        slug: string().required(),
+        input: articleInputSchema,
+      }),
+      resolve: async (
+        _,
+        { slug, input: { title, body, description, tagList } },
+        context: Context
+      ) => {
+        const origin = await checkArticle(context, slug);
+        checkArticleOwner(context, origin);
+        const titleChanged = origin.title !== title;
+        return context.prisma.article.update({
+          where: { slug },
+          data: {
+            title: titleChanged ? title : undefined,
+            slug: titleChanged ? slugify(title) : undefined,
+            // You can use onUpdate: Ca
+            tags: {
+              // delete relation
+              deleteMany: { articleId: origin.id },
+              // connect again
+              create: tagList?.map((name: string) => {
+                return {
+                  tag: {
+                    connectOrCreate: {
+                      where: { name },
+                      create: { name },
+                    },
+                  },
+                };
+              }),
+            },
+            updateAt: new Date(),
+            description,
+            body,
+          },
+        });
+      },
+    });
   },
 });
 
