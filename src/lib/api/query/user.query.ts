@@ -52,6 +52,27 @@ const UserQuery = queryType({
         return user && user.username;
       },
     });
+    // TODO: check the UI if sending empty field
+    t.string("checkEmail", {
+      authorize: (_, _args, ctx: Context) => !!ctx.currentUser,
+      args: {
+        email: nonNull(stringArg()),
+      },
+      validate: ({ string }) => ({
+        email: string().required(),
+      }),
+      resolve: async (_, { email }, ctx: Context) => {
+        const user = await ctx.prisma.user.findUnique({
+          select: {
+            email: true,
+          },
+          where: {
+            email,
+          },
+        });
+        return user && user.email;
+      },
+    });
   },
 });
 

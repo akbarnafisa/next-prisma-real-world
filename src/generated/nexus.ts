@@ -96,6 +96,7 @@ export interface NexusGenFieldTypes {
     username: string; // String!
   }
   Query: { // field return type
+    checkEmail: string | null; // String
     checkUsername: string | null; // String
     currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
@@ -131,6 +132,7 @@ export interface NexusGenFieldTypeNames {
     username: 'String'
   }
   Query: { // field return type name
+    checkEmail: 'String'
     checkUsername: 'String'
     currentUser: 'AuthUser'
     profile: 'Profile'
@@ -158,6 +160,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    checkEmail: { // args
+      email: string; // String!
+    }
     checkUsername: { // args
       username: string; // String!
     }

@@ -35,6 +35,7 @@ type Profile implements BaseUser {
 }
 
 type Query {
+  checkEmail(email: String!): String
   checkUsername(username: String!): String
   currentUser: AuthUser!
   profile(username: String!): Profile
