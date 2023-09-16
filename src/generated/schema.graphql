@@ -18,8 +18,10 @@ interface BaseUser {
 }
 
 type Mutation {
+  follow(username: String!): Profile!
   login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
+  unFollow(username: String!): Profile!
   updateUser(input: UserUpdateInput!): AuthUser
 }
 

@@ -6,6 +6,7 @@ import { GraphQLError } from "graphql";
 
 // mutation
 import UserMutation from "./mutation/user.mutation";
+import ProfileMutation from "./mutation/profile.mutation";
 
 // query
 import UserQuery from "./query/user.query";
@@ -15,7 +16,7 @@ import BaseTypes from "./types/base.type";
 import UserTypes from "./types/user.type";
 
 export const schema = makeSchema({
-  types: [UserMutation, UserQuery, ...BaseTypes, ...UserTypes],
+  types: [ProfileMutation, UserMutation, UserQuery, ...BaseTypes, ...UserTypes],
   outputs: {
     schema: path.join(
       __dirname,

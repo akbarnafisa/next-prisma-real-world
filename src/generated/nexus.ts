@@ -85,8 +85,10 @@ export interface NexusGenFieldTypes {
     username: string; // String!
   }
   Mutation: { // field return type
+    follow: NexusGenRootTypes['Profile']; // Profile!
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     signup: NexusGenRootTypes['AuthUser'] | null; // AuthUser
+    unFollow: NexusGenRootTypes['Profile']; // Profile!
     updateUser: NexusGenRootTypes['AuthUser'] | null; // AuthUser
   }
   Profile: { // field return type
@@ -121,8 +123,10 @@ export interface NexusGenFieldTypeNames {
     username: 'String'
   }
   Mutation: { // field return type name
+    follow: 'Profile'
     login: 'AuthUser'
     signup: 'AuthUser'
+    unFollow: 'Profile'
     updateUser: 'AuthUser'
   }
   Profile: { // field return type name
@@ -149,11 +153,17 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    follow: { // args
+      username: string; // String!
+    }
     login: { // args
       input: NexusGenInputs['UserLoginInput']; // UserLoginInput!
     }
     signup: { // args
       input: NexusGenInputs['UserSignupInput']; // UserSignupInput!
+    }
+    unFollow: { // args
+      username: string; // String!
     }
     updateUser: { // args
       input: NexusGenInputs['UserUpdateInput']; // UserUpdateInput!

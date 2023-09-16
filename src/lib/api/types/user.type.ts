@@ -49,7 +49,7 @@ const Profile = objectType({
             select: { followerId: true },
             where: { followerId: context.currentUser.id },
           });
-        return !!follows;
+        return !!follows?.length;
       },
     });
   },
