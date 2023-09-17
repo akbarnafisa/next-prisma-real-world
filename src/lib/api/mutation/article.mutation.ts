@@ -122,6 +122,86 @@ const ArticleMutation = extendType({
         });
       },
     });
+
+    t.nonNull.field("favorite", {
+      type: "Article",
+      args: {
+        slug: nonNull(stringArg()),
+      },
+      authorize: (_, _args, ctx: Context) => !!ctx.currentUser,
+      validate: ({ string }) => ({
+        slug: string().required(),
+      }),
+      resolve: async (_, { slug }, context: Context) => {
+        const origin = await checkArticle(context, slug);
+        try {
+          return await context.prisma.article.update({
+            where: { id: origin.id },
+            data: {
+              favoritesCount: {
+                increment: 1,
+              },
+              favoritedBy: { create: { userId: context.currentUser!.id } },
+            },
+          });
+        } catch (e) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === "P2002") {
+              throw new GraphQLError("Article had been favorited", {
+                extensions: {
+                  code: "BAD_USER_INPUT",
+                  invalidArgs: "article",
+                },
+              });
+            }
+          }
+          return origin;
+        }
+      },
+    });
+    t.nonNull.field("unfavorite", {
+      type: "Article",
+      args: {
+        slug: nonNull(stringArg()),
+      },
+      authorize: (_, _args, ctx: Context) => !!ctx.currentUser,
+      validate: ({ string }) => ({
+        slug: string().required(),
+      }),
+      resolve: async (_, { slug }, context: Context) => {
+        const origin = await checkArticle(context, slug);
+        try {
+          return await context.prisma.article.update({
+            where: { id: origin.id },
+            data: {
+              favoritesCount: {
+                decrement: 1,
+              },
+              favoritedBy: {
+                delete: {
+                  userId_articleId : {
+                    userId: context.currentUser!.id,
+                    articleId: origin.id,
+                  },
+                },
+              },
+            },
+          });
+        } catch (e) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === "P2017") {
+              throw new GraphQLError("Article had been unfavorited", {
+                extensions: {
+                  code: "BAD_USER_INPUT",
+                  invalidArgs: "article",
+                },
+              });
+            }
+          }
+          return origin;
+        }
+      },
+    });
   },
 });
 

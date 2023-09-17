@@ -24,6 +24,7 @@ const ProfileMutation = extendType({
           },
           data: {
             followedBy: {
+              // maybe using connectOrCreate because followed and following in two ways?
               connectOrCreate: {
                 where: {
                   followerId_followingId: {

@@ -132,10 +132,12 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createArticle: NexusGenRootTypes['Article']; // Article!
     deleteArticle: NexusGenRootTypes['Article']; // Article!
+    favorite: NexusGenRootTypes['Article']; // Article!
     follow: NexusGenRootTypes['Profile']; // Profile!
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     signup: NexusGenRootTypes['AuthUser'] | null; // AuthUser
     unFollow: NexusGenRootTypes['Profile']; // Profile!
+    unfavorite: NexusGenRootTypes['Article']; // Article!
     updateArticle: NexusGenRootTypes['Article']; // Article!
     updateUser: NexusGenRootTypes['AuthUser'] | null; // AuthUser
   }
@@ -187,10 +189,12 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createArticle: 'Article'
     deleteArticle: 'Article'
+    favorite: 'Article'
     follow: 'Profile'
     login: 'AuthUser'
     signup: 'AuthUser'
     unFollow: 'Profile'
+    unfavorite: 'Article'
     updateArticle: 'Article'
     updateUser: 'AuthUser'
   }
@@ -225,6 +229,9 @@ export interface NexusGenArgTypes {
     deleteArticle: { // args
       slug: string; // String!
     }
+    favorite: { // args
+      slug: string; // String!
+    }
     follow: { // args
       username: string; // String!
     }
@@ -236,6 +243,9 @@ export interface NexusGenArgTypes {
     }
     unFollow: { // args
       username: string; // String!
+    }
+    unfavorite: { // args
+      slug: string; // String!
     }
     updateArticle: { // args
       input: NexusGenInputs['ArticleInput']; // ArticleInput!

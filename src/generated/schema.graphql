@@ -46,10 +46,12 @@ scalar DateTime
 type Mutation {
   createArticle(input: ArticleInput!): Article!
   deleteArticle(slug: String!): Article!
+  favorite(slug: String!): Article!
   follow(username: String!): Profile!
   login(input: UserLoginInput!): AuthUser
   signup(input: UserSignupInput!): AuthUser
   unFollow(username: String!): Profile!
+  unfavorite(slug: String!): Article!
   updateArticle(input: ArticleInput!, slug: String!): Article!
   updateUser(input: UserUpdateInput!): AuthUser
 }
