@@ -24,6 +24,7 @@ export const useToken = () => {
 
 function useProvideToken() {
   const [token, setToken] = useLocalStorage<string>('token', '');
+  // need to use useCallback because it's call for each render
   const handleChangeToken = useCallback(
     (token: string) => {
       setToken(token);

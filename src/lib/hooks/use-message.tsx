@@ -66,6 +66,7 @@ function useProvideMessageHandler() {
     return () => setDismissing(false);
   }, [asPath]);
 
+   // need to use useCallback because it's call for each render
   const success = useCallback(({ content, mode }: Pick<Message, 'content' | 'mode'>) => {
     setMessage({ content, mode, type: 'success' });
   }, []);

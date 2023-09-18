@@ -7,11 +7,9 @@ export function useCurrentUser() {
   const { token } = useToken();
   const { handleErrors } = useMessageHandler();
   const [loading, setLoading] = useState(true)
-  // TODO: check the cache 
   const [loadCurrentUser, { data }] = useCurrentUserLazyQuery({
     fetchPolicy: 'cache-first',
     nextFetchPolicy: 'cache-only',
-    // TOOD: check error handlres for none mode
     onError: (err) => handleErrors({ err, mode: 'none' }),
   })
 
