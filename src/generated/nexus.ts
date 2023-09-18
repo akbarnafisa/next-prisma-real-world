@@ -153,6 +153,7 @@ export interface NexusGenFieldTypes {
     checkUsername: string | null; // String
     currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
+    tags: string[]; // [String!]!
   }
   BaseUser: { // field return type
     bio: string | null; // String
@@ -210,6 +211,7 @@ export interface NexusGenFieldTypeNames {
     checkUsername: 'String'
     currentUser: 'AuthUser'
     profile: 'Profile'
+    tags: 'String'
   }
   BaseUser: { // field return type name
     bio: 'String'

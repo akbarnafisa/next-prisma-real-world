@@ -24,4 +24,4 @@ export const BASE_URL =
 // export const ARTICLES_FETCH_MORE_INTERVAL = 15; // seconds
 // export const COMMENTS_FETCH_MORE_INTERVAL = 15;
 
-// export const SIDEBAR_TAG_QUERY_SIZE = 27;
+export const SIDEBAR_TAG_QUERY_SIZE = 27;

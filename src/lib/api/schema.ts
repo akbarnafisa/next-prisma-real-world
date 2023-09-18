@@ -12,6 +12,7 @@ import ProfileMutation from "./mutation/profile.mutation";
 // query
 import UserQuery from "./query/user.query";
 import ArticleQuery from "./query/article.query";
+import TagQuery from "./query/tag.query";
 
 // types
 import BaseTypes from "./types/base.type";
@@ -26,6 +27,7 @@ export const schema = makeSchema({
     UserMutation,
     UserQuery,
     ArticleQuery,
+    TagQuery,
     DateTime,
     ...BaseTypes,
     ...UserTypes,

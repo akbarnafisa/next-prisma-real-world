@@ -73,6 +73,7 @@ type Query {
   checkUsername(username: String!): String
   currentUser: AuthUser!
   profile(username: String!): Profile
+  tags: [String!]!
 }
 
 input UserLoginInput {
