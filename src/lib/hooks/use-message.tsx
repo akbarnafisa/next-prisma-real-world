@@ -91,7 +91,7 @@ function useProvideMessageHandler() {
         // TODO: check later
         Router.push('/login');
       };
-
+      // TODO: check graphql error
       if (graphQLErrors) {
         for (let err of graphQLErrors) {
           switch (err.extensions.code) {
