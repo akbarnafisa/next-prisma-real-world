@@ -1,11 +1,11 @@
 import * as R from "ramda";
 import { useState } from "react";
-// import { useCurrentUser } from '../../lib/hooks/use-current-user';
+import { useCurrentUser } from "../../lib/hooks/use-current-user";
 import CustomLink from "./CustomLink";
 import NavItem, { NavItemProps } from "./NavItem";
 
 export default function Header() {
-  // const { user, loading } = useCurrentUser();
+  const { user, loading } = useCurrentUser();
   const [ariaExpanded, setAriaExpanded] = useState(false);
   function toggleExpand(): () => void {
     return () => setAriaExpanded(!ariaExpanded);
@@ -19,7 +19,7 @@ export default function Header() {
   const userNavItems: NavItemProps[] = [
     { text: "New Article", href: "/editor", icon: "ion-compose" },
     { text: "Settings", href: "/settings", icon: "ion-gear-a" },
-    // { text: `${user?.username}`, href: `/profile/${user?.username}` },
+    { text: `${user?.username}`, href: `/profile/${user?.username}` },
   ];
   return (
     <nav className="bg-white py-2.5 rounded-b fixed w-full z-20 shadow-md shadow-gray-300">
@@ -59,36 +59,31 @@ export default function Header() {
           id="navbar-default"
         >
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-            <>
-              {R.concat(commonNavItems, guestNavItems).map(
-                ({ text, href, icon }) => (
-                  <li key={text} onClick={toggleExpand()}>
-                    <NavItem {...{ text, icon, href }} />
-                  </li>
-                )
-              )}
-            </>
-            {/* {!loading && (
+            {!loading && (
               <>
                 {user ? (
                   <>
-                    {R.concat(commonNavItems, userNavItems).map(({ text, href, icon }) => (
-                      <li key={text} onClick={toggleExpand()}>
-                        <NavItem {...{ text, icon, href }} />
-                      </li>
-                    ))}
+                    {R.concat(commonNavItems, userNavItems).map(
+                      ({ text, href, icon }) => (
+                        <li key={text} onClick={toggleExpand()}>
+                          <NavItem {...{ text, icon, href }} />
+                        </li>
+                      )
+                    )}
                   </>
                 ) : (
                   <>
-                    {R.concat(commonNavItems, guestNavItems).map(({ text, href, icon }) => (
-                      <li key={text} onClick={toggleExpand()}>
-                        <NavItem {...{ text, icon, href }} />
-                      </li>
-                    ))}
+                    {R.concat(commonNavItems, guestNavItems).map(
+                      ({ text, href, icon }) => (
+                        <li key={text} onClick={toggleExpand()}>
+                          <NavItem {...{ text, icon, href }} />
+                        </li>
+                      )
+                    )}
                   </>
                 )}
               </>
-            )} */}
+            )}
           </ul>
         </div>
       </div>
