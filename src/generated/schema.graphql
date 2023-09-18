@@ -69,9 +69,13 @@ type Profile implements BaseUser {
 
 type Query {
   article(slug: String!): Article
+  articles(author: String, cursor: Int, favorited: String, limit: Int = 10, offset: Int = 0, tag: String): [Article!]!
+  articlesCount(author: String, favorited: String, tag: String): Int!
   checkEmail(email: String!): String
   checkUsername(username: String!): String
   currentUser: AuthUser!
+  feed(cursor: Int, limit: Int = 10, offset: Int = 0): [Article!]!
+  feedCount: Int!
   profile(username: String!): Profile
   tags: [String!]!
 }

@@ -149,9 +149,13 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     article: NexusGenRootTypes['Article'] | null; // Article
+    articles: NexusGenRootTypes['Article'][]; // [Article!]!
+    articlesCount: number; // Int!
     checkEmail: string | null; // String
     checkUsername: string | null; // String
     currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
+    feed: NexusGenRootTypes['Article'][]; // [Article!]!
+    feedCount: number; // Int!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
     tags: string[]; // [String!]!
   }
@@ -207,9 +211,13 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     article: 'Article'
+    articles: 'Article'
+    articlesCount: 'Int'
     checkEmail: 'String'
     checkUsername: 'String'
     currentUser: 'AuthUser'
+    feed: 'Article'
+    feedCount: 'Int'
     profile: 'Profile'
     tags: 'String'
   }
@@ -261,11 +269,29 @@ export interface NexusGenArgTypes {
     article: { // args
       slug: string; // String!
     }
+    articles: { // args
+      author?: string | null; // String
+      cursor?: number | null; // Int
+      favorited?: string | null; // String
+      limit: number | null; // Int
+      offset?: number | null; // Int
+      tag?: string | null; // String
+    }
+    articlesCount: { // args
+      author?: string | null; // String
+      favorited?: string | null; // String
+      tag?: string | null; // String
+    }
     checkEmail: { // args
       email: string; // String!
     }
     checkUsername: { // args
       username: string; // String!
+    }
+    feed: { // args
+      cursor?: number | null; // Int
+      limit: number | null; // Int
+      offset?: number | null; // Int
     }
     profile: { // args
       username: string; // String!
