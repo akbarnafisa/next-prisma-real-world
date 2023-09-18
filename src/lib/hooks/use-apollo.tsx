@@ -12,8 +12,7 @@ export function CustomApolloProvider({
 }) {
   const { token } = useToken();
   const tokenRef = useRef<string>();
-  // TODO: confirm this statement
-
+  // ODOT: confirm this statement
   // Whenever the token changes, the component re-renders, thus updating the ref.
   // always render on route change
   tokenRef.current = token;

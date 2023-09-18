@@ -92,7 +92,8 @@ function useProvideMessageHandler() {
         // TODO: check later
         Router.push('/login');
       };
-      // TODO: check graphql error
+      // ODOT: check graphql error
+      // handled, need differentiate between unathorized vs unauthenticated user
       if (graphQLErrors) {
         for (let err of graphQLErrors) {
           switch (err.extensions.code) {

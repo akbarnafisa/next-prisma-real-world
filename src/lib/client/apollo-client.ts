@@ -17,7 +17,8 @@ export const httpLink = createHttpLink({
 
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (process.env.NODE_ENV === "development") {
-    // TODO: check this graphql error
+    // ODOT: check this graphql error
+    // confirmed
     if (graphQLErrors) {
       graphQLErrors.forEach(({ message, locations, path }) =>
         console.log(
