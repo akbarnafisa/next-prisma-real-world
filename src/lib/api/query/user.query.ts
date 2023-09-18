@@ -52,7 +52,8 @@ const UserQuery = queryType({
         return user && user.username;
       },
     });
-    // TODO: check the UI if sending empty field
+    // ODOT: check the UI if sending empty field
+    // error from graphql, the error message is not formated
     t.string("checkEmail", {
       authorize: (_, _args, ctx: Context) => !!ctx.currentUser,
       args: {

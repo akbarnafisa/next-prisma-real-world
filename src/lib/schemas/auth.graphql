@@ -1,0 +1,31 @@
+query CurrentUser {
+  currentUser {
+    id
+    username
+    email
+    bio
+    image
+  }
+}
+
+mutation Signup($input: UserSignupInput!) {
+  signup(input: $input) {
+    id
+    username
+    email
+    bio
+    image
+    token
+  }
+}
+
+mutation Login($input: UserLoginInput!) {
+  login(input: $input) {
+    id
+    username
+    email
+    bio
+    image
+    token
+  }
+}
