@@ -37,6 +37,9 @@ export interface NexusGenInputs {
     tagList: string[]; // [String!]!
     title: string; // String!
   }
+  CommentInput: { // input type
+    body: string; // String!
+  }
   UserLoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -86,6 +89,12 @@ export interface NexusGenObjects {
     token?: string | null; // String
     username: string; // String!
   }
+  Comment: { // root type
+    body: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+  }
   Mutation: {};
   Profile: { // root type
     bio?: string | null; // String
@@ -97,7 +106,7 @@ export interface NexusGenObjects {
 
 export interface NexusGenInterfaces {
   BaseUser: NexusGenRootTypes['AuthUser'] | NexusGenRootTypes['Profile'];
-  Node: NexusGenRootTypes['Article'] | NexusGenRootTypes['AuthUser'];
+  Node: NexusGenRootTypes['Article'] | NexusGenRootTypes['AuthUser'] | NexusGenRootTypes['Comment'];
 }
 
 export interface NexusGenUnions {
@@ -128,6 +137,13 @@ export interface NexusGenFieldTypes {
     image: string | null; // String
     token: string | null; // String
     username: string; // String!
+  }
+  Comment: { // field return type
+    author: NexusGenRootTypes['Profile']; // Profile!
+    body: string; // String!
+    createdAt: NexusGenScalars['DateTime']; // DateTime!
+    id: number; // Int!
+    updatedAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Mutation: { // field return type
     createArticle: NexusGenRootTypes['Article']; // Article!
@@ -190,6 +206,13 @@ export interface NexusGenFieldTypeNames {
     image: 'String'
     token: 'String'
     username: 'String'
+  }
+  Comment: { // field return type name
+    author: 'Profile'
+    body: 'String'
+    createdAt: 'DateTime'
+    id: 'Int'
+    updatedAt: 'DateTime'
   }
   Mutation: { // field return type name
     createArticle: 'Article'
@@ -301,12 +324,13 @@ export interface NexusGenArgTypes {
 
 export interface NexusGenAbstractTypeMembers {
   BaseUser: "AuthUser" | "Profile"
-  Node: "Article" | "AuthUser"
+  Node: "Article" | "AuthUser" | "Comment"
 }
 
 export interface NexusGenTypeInterfaces {
   Article: "Node"
   AuthUser: "BaseUser" | "Node"
+  Comment: "Node"
   Profile: "BaseUser"
 }
 

@@ -45,22 +45,31 @@ export const updateUserInputSchema = object<
   image,
 });
 
-export const articleInputSchema = object<Record<keyof NexusGenInputs["ArticleInput"], AnySchema>>(
+export const articleInputSchema = object<
+  Record<keyof NexusGenInputs["ArticleInput"], AnySchema>
+>({
+  title: string()
+    .trim()
+    .required("Title is required")
+    .max(100, "Title is too long"),
+  description: string()
+    .trim()
+    .required("Description is required")
+    .max(255, "Description is too long"),
+  body: string()
+    .trim()
+    .required("Article content is required")
+    .max(65535, "Article content is too long"),
+  tagList: array(
+    string().trim().required("Tag is required").max(100, "Tag is too long")
+  ).min(1, "Add at least one tag"),
+});
+
+export const commentInputSchema = object<Record<keyof NexusGenInputs["CommentInput"], AnySchema>>(
   {
-    title: string()
-      .trim()
-      .required("Title is required")
-      .max(100, "Title is too long"),
-    description: string()
-      .trim()
-      .required("Description is required")
-      .max(255, "Description is too long"),
     body: string()
       .trim()
-      .required("Article content is required")
-      .max(65535, "Article content is too long"),
-    tagList: array(
-      string().trim().required("Tag is required").max(100, "Tag is too long")
-    ).min(1, "Add at least one tag"),
+      .required("Comment content is required")
+      .max(65535, "Comment content is too long"),
   }
 );

@@ -18,6 +18,7 @@ import TagQuery from "./query/tag.query";
 import BaseTypes from "./types/base.type";
 import UserTypes from "./types/user.type";
 import ArticleType from "./types/article.type";
+import CommentTypes from "./types/comment.type";
 import { DateTime } from './types/scalar.type';
 
 export const schema = makeSchema({
@@ -32,6 +33,7 @@ export const schema = makeSchema({
     ...BaseTypes,
     ...UserTypes,
     ...ArticleType,
+    ...CommentTypes,
   ],
   outputs: {
     schema: path.join(
