@@ -1,5 +1,5 @@
 import {
-  Path,
+  type Path,
   useController,
   useFormContext,
   useFormState,
@@ -7,7 +7,7 @@ import {
 import { useFormCallback } from "../../lib/hooks/use-form-callback";
 import ControlInput from "./control-input";
 import FormErrorMessage from "./FormErrorMessage";
-import { InputProps } from "./Input";
+import type { InputProps } from "./Input";
 
 export interface FormInputBaseProps<TFormValues> {
   name: Path<TFormValues>;

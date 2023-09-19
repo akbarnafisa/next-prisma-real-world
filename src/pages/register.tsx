@@ -1,12 +1,12 @@
 import { useApolloClient } from "@apollo/client";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import CustomLink from "../components/common/CustomLink";
 import Wrapper from "../components/common/wrapper";
 import Form from "../components/forms/form";
 import FormInput from "../components/forms/FormInput";
 import Submit from "../components/forms/submit";
-import { UserSignupInput, useSignupMutation } from "../generated/graphql";
+import { type UserSignupInput, useSignupMutation } from "../generated/graphql";
 import guestOnly from "../lib/auth/guest-only";
 import { useMessageHandler } from "../lib/hooks/use-message";
 import { useToken } from "../lib/hooks/use-token";

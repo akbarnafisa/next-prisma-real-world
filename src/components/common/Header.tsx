@@ -2,7 +2,7 @@ import * as R from "ramda";
 import { useState } from "react";
 import { useCurrentUser } from "../../lib/hooks/use-current-user";
 import CustomLink from "./CustomLink";
-import NavItem, { NavItemProps } from "./NavItem";
+import NavItem, { type NavItemProps } from "./NavItem";
 
 export default function Header() {
   const { user, loading } = useCurrentUser();

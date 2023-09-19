@@ -1,8 +1,16 @@
-import { forwardRef, Ref } from 'react';
-import { InputProps, joinInputStyles } from './Input';
+import { forwardRef, type Ref } from "react";
+import { type InputProps, joinInputStyles } from "./Input";
 
 function ControlInput(
-  { mode = 'default', label, type = 'text', size = 'm', className = '', disabled = false, ...props }: InputProps,
+  {
+    mode = "default",
+    label,
+    type = "text",
+    size = "m",
+    className = "",
+    disabled = false,
+    ...props
+  }: InputProps,
   ref: Ref<HTMLInputElement>
 ) {
   return (
@@ -11,7 +19,7 @@ function ControlInput(
       type={type}
       aria-label={label}
       className={joinInputStyles({ mode, size, disabled, className })}
-      autoComplete={`${type === 'password' ? 'off' : 'on'}`}
+      autoComplete={`${type === "password" ? "off" : "on"}`}
       {...props}
     />
   );
