@@ -10,6 +10,7 @@ export function useCurrentUser() {
   const [loadCurrentUser, { data }] = useCurrentUserLazyQuery({
     fetchPolicy: 'cache-first',
     nextFetchPolicy: 'cache-only',
+    errorPolicy: 'all',
     onError: (err) => handleErrors({ err, mode: 'none' }),
   })
 

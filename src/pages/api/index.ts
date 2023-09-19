@@ -25,6 +25,7 @@ async function getApiHandler() {
       ApolloServerPluginCacheControl({ defaultMaxAge: 5 }),
       ...pluginDisabled,
     ],
+    // has some issue, because nexus cant use directives
     persistedQueries: { ttl: 1500 },
     formatError: (err) => {
       if (

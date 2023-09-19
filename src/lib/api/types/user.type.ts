@@ -1,4 +1,4 @@
-import { inputObjectType, interfaceType, objectType } from "nexus";
+import { inputObjectType, interfaceType, objectType,  } from "nexus";
 import { Context } from "../context";
 
 export interface AuthPayload {
