@@ -1,15 +1,34 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
+    // Base Option
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "target": "ES2019",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
     "resolveJsonModule": true,
+    "moduleDetection": "force",
+
+    // Stricness
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+
+    // If transpiling with ts
+    "moduleResolution": "node",
+    "module": "esnext",
+
+    // If Not transpiling with ts
+    // "moduleResolution": "node",
+    // "module": "esnext",
+    "noEmit": true,
+
+    // If your code run in DOM
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    // If your not code run in DOM
+    // "lib": ["esnext"],
+
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
