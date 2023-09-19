@@ -27,8 +27,9 @@ const Register: NextPage = () => {
   const [signUp] = useSignupMutation({
     onCompleted: async (data) => {
       if (data) {
-        handleChangeToken(data.signup?.token as string);
+        await client.clearStore()
         await client.resetStore();
+        handleChangeToken(data.signup?.token as string);
         router.replace("/");
       }
     },
