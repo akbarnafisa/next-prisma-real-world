@@ -57,7 +57,9 @@ scalar DateTime
 
 type Mutation {
   createArticle(input: ArticleInput!): Article!
+  createComment(input: CommentInput!, slug: String!): Comment!
   deleteArticle(slug: String!): Article!
+  deleteComment(id: Int!): Comment!
   favorite(slug: String!): Article!
   follow(username: String!): Profile!
   login(input: UserLoginInput!): AuthUser
@@ -85,6 +87,7 @@ type Query {
   articlesCount(author: String, favorited: String, tag: String): Int!
   checkEmail(email: String!): String
   checkUsername(username: String!): String
+  comments(articleId: Int!, cursor: Int, limit: Int = 20, offset: Int = 0): [Comment!]!
   currentUser: AuthUser!
   feed(cursor: Int, limit: Int = 10, offset: Int = 0): [Article!]!
   feedCount: Int!

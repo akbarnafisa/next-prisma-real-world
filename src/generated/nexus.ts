@@ -147,7 +147,9 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createArticle: NexusGenRootTypes['Article']; // Article!
+    createComment: NexusGenRootTypes['Comment']; // Comment!
     deleteArticle: NexusGenRootTypes['Article']; // Article!
+    deleteComment: NexusGenRootTypes['Comment']; // Comment!
     favorite: NexusGenRootTypes['Article']; // Article!
     follow: NexusGenRootTypes['Profile']; // Profile!
     login: NexusGenRootTypes['AuthUser'] | null; // AuthUser
@@ -169,6 +171,7 @@ export interface NexusGenFieldTypes {
     articlesCount: number; // Int!
     checkEmail: string | null; // String
     checkUsername: string | null; // String
+    comments: NexusGenRootTypes['Comment'][]; // [Comment!]!
     currentUser: NexusGenRootTypes['AuthUser']; // AuthUser!
     feed: NexusGenRootTypes['Article'][]; // [Article!]!
     feedCount: number; // Int!
@@ -216,7 +219,9 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createArticle: 'Article'
+    createComment: 'Comment'
     deleteArticle: 'Article'
+    deleteComment: 'Comment'
     favorite: 'Article'
     follow: 'Profile'
     login: 'AuthUser'
@@ -238,6 +243,7 @@ export interface NexusGenFieldTypeNames {
     articlesCount: 'Int'
     checkEmail: 'String'
     checkUsername: 'String'
+    comments: 'Comment'
     currentUser: 'AuthUser'
     feed: 'Article'
     feedCount: 'Int'
@@ -259,8 +265,15 @@ export interface NexusGenArgTypes {
     createArticle: { // args
       input: NexusGenInputs['ArticleInput']; // ArticleInput!
     }
+    createComment: { // args
+      input: NexusGenInputs['CommentInput']; // CommentInput!
+      slug: string; // String!
+    }
     deleteArticle: { // args
       slug: string; // String!
+    }
+    deleteComment: { // args
+      id: number; // Int!
     }
     favorite: { // args
       slug: string; // String!
@@ -310,6 +323,12 @@ export interface NexusGenArgTypes {
     }
     checkUsername: { // args
       username: string; // String!
+    }
+    comments: { // args
+      articleId: number; // Int!
+      cursor?: number | null; // Int
+      limit: number | null; // Int
+      offset?: number | null; // Int
     }
     feed: { // args
       cursor?: number | null; // Int
