@@ -31,9 +31,22 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, cacheLink, httpLink]),
+  link: ApolloLink.from([
+    errorLink,
+    // comment presisted query, because it's hard to invalidate :\
+    // cacheLink,
+    httpLink
+  ]),
   connectToDevTools: process.env.NODE_ENV === "development",
   cache,
+  // TODO: handle one Apollo client, then try to refetchQuery when updating the article
+  // https://medium.com/@zhamdi/server-side-rendering-ssr-using-apollo-and-next-js-ac0b2e3ea461
+  defaultOptions: {
+    query: {
+      fetchPolicy: "no-cache",
+      errorPolicy: "all",
+    },
+  },
   ssrMode: typeof window === "undefined",
 });
 

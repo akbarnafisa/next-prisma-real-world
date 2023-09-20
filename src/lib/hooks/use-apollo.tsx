@@ -19,18 +19,24 @@ export function CustomApolloProvider({
 
   // Ensure that the client is only created once.
   const client = useMemo(() => {
-    const authLink = setContext((_, { headers }) => {
+    const authLink = setContext((args, { headers }) => {
       // initiated for each API hit
       return {
         headers: {
           ...headers,
           authorization: tokenRef.current ? `Bearer ${tokenRef.current}` : "",
         },
-      }
+      };
     });
 
     return new ApolloClient({
-      link: ApolloLink.from([errorLink, authLink, cacheLink, httpLink]),
+      link: ApolloLink.from([
+        errorLink,
+        authLink,
+        // comment presisted query, because it's hard to invalidate :\
+        // cacheLink,
+        httpLink,
+      ]),
       connectToDevTools: process.env.NODE_ENV === "development",
       cache,
     });
