@@ -1,6 +1,6 @@
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 import { inputObjectType, objectType } from 'nexus';
-import { Context } from '../context';
+import type { Context } from '../context';
 
 const Comment = objectType({
   name: 'Comment',

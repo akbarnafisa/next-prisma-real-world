@@ -8,11 +8,14 @@ import { GraphQLError } from "graphql";
 import UserMutation from "./mutation/user.mutation";
 import ArticleMutation from "./mutation/article.mutation";
 import ProfileMutation from "./mutation/profile.mutation";
+import CommentMutation from "./mutation/comment.mutation";
 
 // query
 import UserQuery from "./query/user.query";
 import ArticleQuery from "./query/article.query";
 import TagQuery from "./query/tag.query";
+import CommentQuery from "./query/comment.query";
+
 
 // types
 import BaseTypes from "./types/base.type";
@@ -25,9 +28,11 @@ export const schema = makeSchema({
   types: [
     ArticleMutation,
     ProfileMutation,
+    CommentMutation,
     UserMutation,
     UserQuery,
     ArticleQuery,
+    CommentQuery,
     TagQuery,
     DateTime,
     ...BaseTypes,

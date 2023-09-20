@@ -1,8 +1,8 @@
-import { Article, Prisma } from "@prisma/client";
+import { type Article, Prisma } from "@prisma/client";
 import { GraphQLError } from "graphql";
 import { arg, extendType, nonNull, stringArg } from "nexus";
 import { articleInputSchema } from "../../validation/schema";
-import { Context } from "../context";
+import type { Context } from "../context";
 import { slugify } from "../utils";
 
 const ArticleMutation = extendType({
@@ -179,7 +179,7 @@ const ArticleMutation = extendType({
               },
               favoritedBy: {
                 delete: {
-                  userId_articleId : {
+                  userId_articleId: {
                     userId: context.currentUser!.id,
                     articleId: origin.id,
                   },
@@ -207,6 +207,19 @@ const ArticleMutation = extendType({
 
 export async function checkArticle(ctx: Context, slug: string) {
   const origin = await ctx.prisma.article.findUnique({ where: { slug } });
+  if (!origin || origin.del) {
+    throw new GraphQLError("Article not found", {
+      extensions: {
+        code: "BAD_USER_INPUT",
+        invalidArgs: "article",
+      },
+    });
+  }
+  return origin;
+}
+
+export async function checkArticleById(ctx: Context, id: number) {
+  const origin = await ctx.prisma.article.findUnique({ where: { id } });
   if (!origin || origin.del) {
     throw new GraphQLError("Article not found", {
       extensions: {
