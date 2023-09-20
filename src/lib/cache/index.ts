@@ -1,4 +1,4 @@
-import { FieldMergeFunction, InMemoryCache } from '@apollo/client';
+import { type FieldMergeFunction, InMemoryCache } from '@apollo/client';
 import * as R from 'ramda';
 
 const merge: FieldMergeFunction = (existing: any[], incoming: any[], { args, readField }) => {
@@ -11,37 +11,39 @@ const merge: FieldMergeFunction = (existing: any[], incoming: any[], { args, rea
 
 export const cache = new InMemoryCache({
   // TODO: confirm later
-  // typePolicies: {
-  //   Article: {
-  //     keyFields: ['id'],
-  //   },
-  //   Comment: {
-  //     keyFields: ['id'],
-  //   },
-  //   Profile: {
-  //     keyFields: ['username'],
-  //   },
-  //   AuthUser: {
-  //     keyFields: ['id'],
-  //   },
-  //   Tag: {
-  //     keyFields: ['name'],
-  //   },
-  //   Query: {
-  //     fields: {
-  //       feed: {
-  //         keyArgs: [],
-  //         merge,
-  //       },
-  //       articles: {
-  //         keyArgs: ['author', 'favorited', 'tag'],
-  //         merge,
-  //       },
-  //       comments: {
-  //         keyArgs: ['articleId'],
-  //         merge,
-  //       },
-  //     },
-  //   },
-  // },
+  typePolicies: {
+    Article: {
+      keyFields: ['id'],
+    },
+    Comment: {
+      keyFields: ['id'],
+    },
+    // update identifier for each graphql type, usually for type that
+    Profile: {
+      keyFields: ['username'],
+    },
+    AuthUser: {
+      keyFields: ['id'],
+    },
+    // TODO: check this type policy since there is no type Tag
+    // Tag: {
+    //   keyFields: ['name'],
+    // },
+    // Query: {
+    //   fields: {
+    //     feed: {
+    //       keyArgs: [],
+    //       merge,
+    //     },
+    //     articles: {
+    //       keyArgs: ['author', 'favorited', 'tag'],
+    //       merge,
+    //     },
+    //     comments: {
+    //       keyArgs: ['articleId'],
+    //       merge,
+    //     },
+    //   },
+    // },
+  },
 });
