@@ -1,0 +1,23 @@
+query Article($slug: String!) {
+  article(slug: $slug) {
+    ...ArticleView
+  }
+}
+
+fragment ArticleView on Article {
+  id
+  slug
+  title
+  description
+  body
+  createdAt
+  updateAt
+  favorited
+  favoritesCount
+  author {
+    username
+    image
+    following
+  }
+  tagList
+}

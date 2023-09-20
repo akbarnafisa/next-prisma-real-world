@@ -1,10 +1,11 @@
-query CurrentUser {
-  currentUser {
+mutation Login($input: UserLoginInput!) {
+  login(input: $input) {
     id
     username
     email
     bio
     image
+    token
   }
 }
 
@@ -19,13 +20,20 @@ mutation Signup($input: UserSignupInput!) {
   }
 }
 
-mutation Login($input: UserLoginInput!) {
-  login(input: $input) {
+query CurrentUser {
+  currentUser {
     id
     username
     email
     bio
     image
-    token
   }
+}
+
+query CheckUsername($username: String!) {
+  checkUsername(username: $username)
+}
+
+query CheckEmail($email: String!) {
+  checkEmail(email: $email)
 }

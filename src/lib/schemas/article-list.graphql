@@ -1,0 +1,20 @@
+query Articles($author: String, $favorited: String, $offset: Int, $limit: Int, $tag: String, $cursor: Int) {
+  articles(author: $author, favorited: $favorited, offset: $offset, limit: $limit, tag: $tag, cursor: $cursor) {
+    ...ArticlePreview
+  }
+}
+
+fragment ArticlePreview on Article {
+  id
+  slug
+  description
+  title
+  createdAt
+  author {
+    username
+    image
+  }
+  favorited
+  favoritesCount
+  tagList
+}
