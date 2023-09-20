@@ -8,6 +8,8 @@ import {
   TagsDocument,
   useCreateArticleMutation,
   useUpdateArticleMutation,
+  ArticleDocument,
+  EditArticleDocument,
 } from "../../generated/graphql";
 import { ARTICLES_PAGE_SIZE } from "../../lib/constants";
 import { useMessageHandler } from "../../lib/hooks/use-message";
@@ -50,15 +52,25 @@ export default function ArticleEditor({
     onError: (err) => handleErrors({ err, mode: "alert" }),
   });
 
-  const [updateArticle] =
-    useUpdateArticleMutation({
-      // TODO: check refetch query on current article?
-      refetchQueries: [{ query: TagsDocument }],
-      onCompleted: (data) => {
-        if (data) router.replace(`/article/${data.updateArticle.slug}`);
+  const [updateArticle] = useUpdateArticleMutation({
+    // ODOT: check refetch query on current article?
+    // no, because article fetching is using SSR
+    // but we need still to do it to make it sure
+    // actually, we do not need to update EditArticleDocument for some reason
+    refetchQueries: [
+      { query: TagsDocument },
+      {
+        query: EditArticleDocument,
+        variables: { slug: article?.slug },
       },
-      onError: (err) => handleErrors({ err, mode: "alert" }),
-    });
+    ],
+    onCompleted: async (data) => {
+      if (data) {
+        router.replace(`/article/${data.updateArticle.slug}`);
+      }
+    },
+    onError: (err) => handleErrors({ err, mode: "alert" }),
+  });
 
   async function onSubmit(input: ArticleInput) {
     article
@@ -83,21 +95,29 @@ export default function ArticleEditor({
             mode="onChange"
             defaultValues={init}
           >
-            <FormInput<ArticleInput> name="title" placeholder="Article title" />
-            <FormInput<ArticleInput>
-              name="description"
-              placeholder="What's this article about?"
-            />
-            <FormTextarea<ArticleInput>
-              name="body"
-              placeholder="Write your article (in markdown)"
-              rows={8}
-            />
+            <fieldset
+              className="flex flex-col justify-center mx-auto"
+              aria-live="polite"
+            >
+              <FormInput<ArticleInput>
+                name="title"
+                placeholder="Article title"
+              />
+              <FormInput<ArticleInput>
+                name="description"
+                placeholder="What's this article about?"
+              />
+              <FormTextarea<ArticleInput>
+                name="body"
+                placeholder="Write your article (in markdown)"
+                rows={8}
+              />
+              <TagInput<ArticleInput> name="tagList" placeholder="Enter tags" />
 
-            <TagInput<ArticleInput> name="tagList" placeholder="Enter tags" />
-            <Submit size="l" className="self-end" strict>
-              Publish Article
-            </Submit>
+              <Submit size="l" className="self-end" strict>
+                Publish Article
+              </Submit>
+            </fieldset>
           </Form>
         </div>
       </div>
