@@ -1,5 +1,5 @@
-import { NextSeo, NextSeoProps } from 'next-seo';
-import { ReactNode } from 'react';
+import { NextSeo, type NextSeoProps } from 'next-seo';
+import type { ReactNode } from 'react';
 import { useMessageHandler } from '../../lib/hooks/use-message';
 import LoadingSpinner from './LoadingSpinner';
 
