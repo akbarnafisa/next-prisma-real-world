@@ -20,8 +20,8 @@ export const BASE_URL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://next-real-world.vercel.app';
 
 export const ARTICLES_PAGE_SIZE = 10;
-// export const COMMENTS_PAGE_SIZE = 20;
-// export const ARTICLES_FETCH_MORE_INTERVAL = 15; // seconds
-// export const COMMENTS_FETCH_MORE_INTERVAL = 15;
+export const COMMENTS_PAGE_SIZE = 20;
+export const ARTICLES_FETCH_MORE_INTERVAL = 15; // seconds
+export const COMMENTS_FETCH_MORE_INTERVAL = 15;
 
 export const SIDEBAR_TAG_QUERY_SIZE = 27;

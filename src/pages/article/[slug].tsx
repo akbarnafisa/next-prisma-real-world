@@ -2,7 +2,7 @@ import type { GetServerSideProps } from 'next';
 import ArticleJsonMeta from '../../components/article/article-json-meta';
 import ArticleMeta from '../../components/article/ArticleMeta';
 import ArticlePageBanner from '../../components/article/ArticlePageBanner';
-// import CommentSection from '../../components/article/CommentSection';
+import CommentSection from '../../components/article/CommentSection';
 import Marked from '../../components/article/marked';
 import TagList from '../../components/common/TagList';
 import Wrapper from '../../components/common/wrapper';
@@ -38,7 +38,7 @@ const ArticlePage = ({ article }: { article: ArticleViewFragment }) => {
           <ArticleMeta article={article} />
         </div>
       </div>
-      {/* <CommentSection article={article} /> */}
+      <CommentSection article={article} />
     </Wrapper>
   );
 };

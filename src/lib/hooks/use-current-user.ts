@@ -8,6 +8,7 @@ export function useCurrentUser() {
   const { handleErrors } = useMessageHandler();
   const [loading, setLoading] = useState(true)
   const [loadCurrentUser, { data }] = useCurrentUserLazyQuery({
+    // https://www.apollographql.com/docs/react/data/queries/#cache-first
     fetchPolicy: 'cache-first',
     nextFetchPolicy: 'cache-only',
     errorPolicy: 'all',
