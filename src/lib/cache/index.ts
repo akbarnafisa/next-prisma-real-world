@@ -26,24 +26,25 @@ export const cache = new InMemoryCache({
       keyFields: ['id'],
     },
     // TODO: check this type policy since there is no type Tag
-    // Tag: {
-    //   keyFields: ['name'],
-    // },
-    // Query: {
-    //   fields: {
-    //     feed: {
-    //       keyArgs: [],
-    //       merge,
-    //     },
-    //     articles: {
-    //       keyArgs: ['author', 'favorited', 'tag'],
-    //       merge,
-    //     },
-    //     comments: {
-    //       keyArgs: ['articleId'],
-    //       merge,
-    //     },
-    //   },
-    // },
+    // yes, you need because it will refetch
+    Tag: {
+      keyFields: ['name'],
+    },
+    Query: {
+      fields: {
+        feed: {
+          keyArgs: [],
+          merge,
+        },
+        articles: {
+          keyArgs: ['author', 'favorited', 'tag'],
+          merge,
+        },
+        comments: {
+          keyArgs: ['articleId'],
+          merge,
+        },
+      },
+    },
   },
 });
