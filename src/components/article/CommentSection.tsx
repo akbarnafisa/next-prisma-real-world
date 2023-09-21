@@ -36,6 +36,7 @@ export default function CommentSection({ article }: { article: ArticleViewFragme
 
   const [fetchedSize, setFetchedSize] = useState(COMMENTS_PAGE_SIZE);
   const onLoadMore = useCallback(
+    // TODO: handle all cursor
     async ({ offset, cursor }: { offset: number; cursor: number }) => {
       const { data } = await fetchMore({
         variables: { articleId: article.id, offset, cursor, limit: COMMENTS_PAGE_SIZE },
