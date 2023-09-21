@@ -25,11 +25,11 @@ export const cache = new InMemoryCache({
     AuthUser: {
       keyFields: ['id'],
     },
-    // TODO: check this type policy since there is no type Tag
-    // yes, you need because it will refetch
-    Tag: {
-      keyFields: ['name'],
-    },
+    // ODOT: check this type policy since there is no type Tag
+    // yes, you do not need to specify Tag
+    // Tag: {
+    //   keyFields: ['name'],
+    // },
     Query: {
       fields: {
         feed: {
