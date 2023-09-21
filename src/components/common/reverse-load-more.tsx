@@ -24,6 +24,7 @@ export default function ReverseLoadMore({
   topLoading,
   bottomLoading,
 }: ReverseLoadMoreProps) {
+  // TODO: load more not working
   const bottomNoMore = bottomFetchedSize < ARTICLES_PAGE_SIZE;
   const topNoMore = topFetchedSize < ARTICLES_PAGE_SIZE;
   const [count, { startCountdown, resetCountdown }] = useCountdown({ countStart: ARTICLES_FETCH_MORE_INTERVAL });
