@@ -1,6 +1,6 @@
 import { useFormContext, useFormState } from 'react-hook-form';
 import { useMessageHandler } from '../../lib/hooks/use-message';
-import CustomButton, { ButtonProps, joinButtonStyles } from '../common/CustomButton';
+import CustomButton, { type ButtonProps, joinButtonStyles } from '../common/CustomButton';
 
 type SubmitProps = Partial<{
   strict: boolean; // when using RHF 'isValid' state to control this button, switch to true

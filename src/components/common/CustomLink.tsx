@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link';
+import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { joinStylesFromArray } from '../../lib/utils/styles-builder';

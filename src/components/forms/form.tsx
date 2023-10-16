@@ -1,12 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  FieldValues,
+  type FieldValues,
   FormProvider,
-  SubmitHandler,
+  type SubmitHandler,
   useForm,
-  UseFormProps,
+  type UseFormProps,
 } from "react-hook-form";
-import { AnyObjectSchema } from "yup";
+import type { AnyObjectSchema } from "yup";
 import Alert from "../common/alert";
 
 type FormProps<TFormValues extends FieldValues> = {

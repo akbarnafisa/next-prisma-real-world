@@ -3,7 +3,7 @@ import { ApolloServerPluginLandingPageDisabled } from "@apollo/server/plugin/dis
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { GraphQLError } from "graphql";
-import { NextApiRequest, NextApiResponse } from "next";
+import { type NextApiRequest, type NextApiResponse } from "next";
 
 import prisma from "../../lib/api/prisma";
 import { schema } from "../../lib/api/schema";

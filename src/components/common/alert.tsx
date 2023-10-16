@@ -1,4 +1,4 @@
-import { MessageType, useMessageHandler } from '../../lib/hooks/use-message';
+import { type MessageType, useMessageHandler } from '../../lib/hooks/use-message';
 import { joinStylesFromArray } from '../../lib/utils/styles-builder';
 
 type AlertProps = Partial<{

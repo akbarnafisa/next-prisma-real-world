@@ -40,7 +40,7 @@ module.exports = {
         2: '1 0 auto',
         3: '0 0 auto',
       },
-      typography: (theme) => ({
+      typography: () => ({
         DEFAULT: {
           css: {},
         },

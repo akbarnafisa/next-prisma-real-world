@@ -1,5 +1,5 @@
 import { inputObjectType, interfaceType, objectType,  } from "nexus";
-import { Context } from "../context";
+import { type Context } from "../context";
 
 export interface AuthPayload {
   userId: number;

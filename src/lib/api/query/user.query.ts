@@ -1,6 +1,6 @@
 import { nonNull, queryType, stringArg } from "nexus";
-import { Context } from "../context";
-import { User } from "@prisma/client";
+import type { Context } from "../context";
+import type { User } from "@prisma/client";
 
 const UserQuery = queryType({
   definition(t) {

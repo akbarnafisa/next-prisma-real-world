@@ -8,7 +8,7 @@ import {
   TOKEN_PREFIX,
   TOKEN_TTL,
 } from "../constants";
-import { AuthPayload } from "./types/user.type";
+import type { AuthPayload } from "./types/user.type";
 import slug from 'slug';
 
 export const encodePassword = (password: string) => {
@@ -29,7 +29,7 @@ export const checkPassword = (password: string, hash: string) => {
   return bcrypt.compareSync(password, hash);
 };
 
-const verifyToken = <T> (token: string): T => {
+const verifyToken = <T> (token: string = ''): T => {
   const payload = jwt.verify(token, jwkToPem(PUBLIC_JWK), {
     algorithms: [TOKEN_ALG],
   });

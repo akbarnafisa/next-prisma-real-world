@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { extendType, intArg, nonNull, stringArg } from "nexus";
-import { Context } from "../context";
+import { type Context } from "../context";
 
 const ArticleQuery = extendType({
   type: "Query",

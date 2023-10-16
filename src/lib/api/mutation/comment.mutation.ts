@@ -1,8 +1,8 @@
-import { Comment } from "@prisma/client";
+import type { Comment } from "@prisma/client";
 import { arg, extendType, intArg, nonNull, stringArg } from "nexus";
 import { GraphQLError } from "graphql";
 import { commentInputSchema } from "../../validation/schema";
-import { Context } from "../context";
+import type { Context } from "../context";
 import { checkArticle } from "./article.mutation";
 
 const CommentMutation = extendType({

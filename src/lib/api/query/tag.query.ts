@@ -1,6 +1,6 @@
 import { extendType } from "nexus";
 import { SIDEBAR_TAG_QUERY_SIZE } from "../../constants";
-import { Context } from "../context";
+import { type Context } from "../context";
 
 const TagQuery = extendType({
   type: "Query",

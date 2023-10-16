@@ -8,7 +8,7 @@ const Comment = objectType({
     t.implements('Node');
     t.nonNull.string('body');
     t.nonNull.field('createdAt', { type: 'DateTime' });
-    t.nonNull.field('updatedAt', { type: 'DateTime' });
+    t.nonNull.field('updateAt', { type: 'DateTime' });
     t.nonNull.field('author', {
       type: 'Profile',
       resolve: async ({ id }, _, context: Context) => {

@@ -1,6 +1,6 @@
 import { animated, useSpring } from '@react-spring/web';
 import { useEffect, useRef } from 'react';
-import { MessageType, useMessageHandler } from '../../lib/hooks/use-message';
+import { type MessageType, useMessageHandler } from '../../lib/hooks/use-message';
 import { joinStylesFromArray } from '../../lib/utils/styles-builder';
 
 const toastConfig = 'fixed right-5 bottom-5 p-4 w-full max-w-xs rounded-lg shadow-lg font-medium whitespace-nowrap';

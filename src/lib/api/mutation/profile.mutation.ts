@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { GraphQLError } from "graphql";
 import { extendType, nonNull, stringArg } from "nexus";
-import { Context } from "../context";
+import { type Context } from "../context";
 
 const ProfileMutation = extendType({
   type: "Mutation",

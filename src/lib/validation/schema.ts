@@ -1,5 +1,5 @@
-import { AnySchema, object, string, array } from "yup";
-import { NexusGenInputs } from "../../generated/nexus";
+import { type AnySchema, object, string, array } from "yup";
+import type { NexusGenInputs } from "../../generated/nexus";
 
 export const username = string()
   .trim()

@@ -5,7 +5,7 @@ import {
   useFormState,
   useWatch,
 } from "react-hook-form";
-import { FormInputBaseProps } from "../../components/forms/FormInput";
+import { type FormInputBaseProps } from "../../components/forms/FormInput";
 import { useMessageHandler } from "./use-message";
 /**
  * just a few shared uses of <input/> and <textarea/>

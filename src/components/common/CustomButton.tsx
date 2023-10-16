@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { type ButtonHTMLAttributes, type DetailedHTMLProps } from 'react';
 import { joinStyles, joinStylesFromArray } from '../../lib/utils/styles-builder';
 
 export type ButtonColor = 'primary' | 'secondary' | 'danger';

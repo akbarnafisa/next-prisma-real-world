@@ -6,9 +6,9 @@ import {
   signupInputSchema,
   updateUserInputSchema,
 } from "../../validation/schema";
-import { Context } from "../context";
+import type { Context } from "../context";
 import { checkPassword, encodePassword, issueToken } from "../utils";
-import { AuthPayload } from "../types/user.type";
+import type { AuthPayload } from "../types/user.type";
 
 const UserMutation = mutationType({
   definition(t) {
