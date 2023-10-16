@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "analyze": "cross-env ANALYZE=true next build",
+    "db:migrate": "prisma migrate dev",
+    "generate:prisma": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "generate:graphql": "graphql-codegen --config .graphql-codegen.yml",
