@@ -93,7 +93,7 @@ export interface NexusGenObjects {
     body: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    updateAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Mutation: {};
   Profile: { // root type
@@ -143,7 +143,7 @@ export interface NexusGenFieldTypes {
     body: string; // String!
     createdAt: NexusGenScalars['DateTime']; // DateTime!
     id: number; // Int!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
+    updateAt: NexusGenScalars['DateTime']; // DateTime!
   }
   Mutation: { // field return type
     createArticle: NexusGenRootTypes['Article']; // Article!
@@ -215,7 +215,7 @@ export interface NexusGenFieldTypeNames {
     body: 'String'
     createdAt: 'DateTime'
     id: 'Int'
-    updatedAt: 'DateTime'
+    updateAt: 'DateTime'
   }
   Mutation: { // field return type name
     createArticle: 'Article'

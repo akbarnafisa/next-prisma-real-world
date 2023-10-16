@@ -43,7 +43,7 @@ type Comment implements Node {
   body: String!
   createdAt: DateTime!
   id: Int!
-  updatedAt: DateTime!
+  updateAt: DateTime!
 }
 
 input CommentInput {
