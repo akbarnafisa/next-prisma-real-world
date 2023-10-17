@@ -17,7 +17,7 @@ export const DEFAULT_AVATAR_PLACEHOLDER = `data:image/png;base64,iVBORw0KGgoAAAA
 export const DEFAULT_AVATAR = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAABmJLR0QA/wD/AP+gvaeTAAAA6UlEQVR4nO3asQnDQBBFQZ9R6p4UuGwF6skF2D1oDIvgTQHieGz00fqcx/eRy57TD7i7AqICogKiAqICogKiAqICogKiAqICogKiAqICok0/8Nrf6x8PmaJ7aBeICogKiAqICogKiAqICogKiAqICogKiAqICogKiMa3PN3jpvfILhAVEBUQFRAVEBUQFRAVEBUQFRAVEBUQFRAVEBUQrbvvcar/A4cVEBUQFRAVEBUQFRAVEBUQFRAVEBUQFRAVEBUQ8R6odE+cfn8XiAqICogKiAqICogKiAqICogKiAqICogKiAqICoh+xesa6Scaqy0AAAAASUVORK5CYII=`;
 
 export const BASE_URL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://next-real-world.vercel.app';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://next-prisma-real-world.vercel.app';
 
 export const ARTICLES_PAGE_SIZE = 2;
 export const COMMENTS_PAGE_SIZE = 20;
